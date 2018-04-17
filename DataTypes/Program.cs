@@ -12,7 +12,6 @@ namespace Game{
             int yn4 = 0;
             int yn5 = 0;
             int yn5_1 = 0;
-            int stick = 0;
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine("Welcome to the cavern of secrets!");
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
