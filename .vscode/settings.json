@@ -2,5 +2,6 @@
   "cSpell.words": [
     "dbcmd",
     "dbcon"
-  ]
+  ],
+  "editor.rulers": [100],
 }
