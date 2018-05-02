@@ -37,12 +37,6 @@ namespace TicTacToe
             playerTurn = (playerTurn == "X") ? "O" : "X";
             
         }
-
-        public static void PlaceMark(int row, int column)
-        {
-            // place a mark at the row and column where GetInput() states
-        }
-
         public static bool CheckForWin()
         {
             return HorizontalWin() || VerticalWin() || DiagonalWin();
