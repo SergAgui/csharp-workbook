@@ -4,6 +4,7 @@ namespace TicTacToe
 {
     class Program
     {
+        public static int turn = 0;
         public static string playerTurn = "X";
         public static string[][] board = new string[][]
         {
@@ -16,13 +17,13 @@ namespace TicTacToe
         {
             do
             {
+                turn++;
                 DrawBoard();
+                CheckForWin();
+                CheckForTie();
                 GetInput();
 
             } while (!CheckForWin() && !CheckForTie());
-
-            // leave this command at the end so your program does not close automatically
-            Console.ReadLine();
         }
 
         public static void GetInput()
@@ -44,16 +45,16 @@ namespace TicTacToe
 
         public static bool CheckForWin()
         {
-            if (HorizontalWin() || VerticalWin() || DiagonalWin() == true)
-            {
-               Console.WriteLine("Player " + playerTurn + "Wins!!");
-               return true;
-            }
-                return false;
+            return HorizontalWin() || VerticalWin() || DiagonalWin();
+            // Console.WriteLine("Player " + playerTurn + "Wins!!");
         }
 
         public static bool CheckForTie()
         {
+            if (turn == 8)
+            {
+                Console.WriteLine("Tie Game");
+            }
             return false;
         }
         
@@ -63,6 +64,7 @@ namespace TicTacToe
             (board[1][0] == playerTurn && board[1][1] == playerTurn && board[1][2] == playerTurn) ||
             (board[2][0] == playerTurn && board[2][1] == playerTurn && board[2][2] == playerTurn))
             {
+                Console.WriteLine("Player " + playerTurn + " Wins!!");
                 return true;
             }
             return false;
@@ -74,6 +76,7 @@ namespace TicTacToe
             (board[0][1] == playerTurn && board[1][1] == playerTurn && board[2][1] == playerTurn) ||
             (board[0][2] == playerTurn && board[1][2] == playerTurn && board[2][2] == playerTurn))
             {
+                Console.WriteLine("Player " + playerTurn + " Wins!!");
                 return true;
             }
             return false;
@@ -84,6 +87,7 @@ namespace TicTacToe
             if((board[0][0] == playerTurn && board[1][1] == playerTurn && board[2][2] == playerTurn) ||
             (board[0][2] == playerTurn && board[1][1] == playerTurn && board[2][0] == playerTurn))
             {
+                Console.WriteLine("Player " + playerTurn + " Wins!!");
                 return true;
             }
             return false;
