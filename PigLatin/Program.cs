@@ -11,7 +11,7 @@ namespace PigLatin
             Console.WriteLine("enter a sentance");
             string input = Console.ReadLine();
 
-            Console.WriteLine(TranslateSentance(input));
+            Console.WriteLine(TranslatePunctuation(input));
             
 
         }
@@ -47,9 +47,15 @@ namespace PigLatin
 
         private static string TranslatePunctuation (string punctuation)
         {
-            int punctuationIndex = punctuation.IndexOfAny(new char[] { '.', ',', '!', '?' });
-            //still working
-            return "";
+            //int punctuationIndex = punctuation.IndexOfAny(new char[] { '.', ',', '!', '?' });
+            string[] allPunctuation = punctuation.Split('.', ',', '!', '?');
+            string[] translatedPunctuation = new string[allPunctuation.Length];
+
+            for (int i = 0; i < allPunctuation.Length; i++)
+            {
+                translatedPunctuation[i] = TranslateWord(allPunctuation[i]);
+            }
+            return String.Join('.', ',', '!', '?', translatedPunctuation);
 
         }
     }
