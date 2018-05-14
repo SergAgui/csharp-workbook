@@ -8,19 +8,40 @@ namespace Checkpoint1
     {
         static void Main(string[] args)
         {
+            int selector = 0;
+            Console.WriteLine("Please select which part you would like to try");
+            Console.WriteLine("Enter 1, 2, 3, 4, or 5");
+            selector = Convert.ToInt32(Console.ReadLine());
+            if (selector == 1)
+            {
+               problemOne(); 
+            }
+            else if (selector == 2)
+            {
+                problemTwo();
+            }
+            else if (selector == 3)
+            {
+                problemThree();
+            }
+            else if (selector == 4)
+            {
+                problemFour();
+            }
+            else if (selector == 5)
+            {
+                problemFive();
+            }
         //1) count numbers between 1-100 are divisible by 3 with no remainder. Display to console
-            // problemOne();
+
         //2) Continuously ask user to enter a number or "ok" to exit. Calc the sum of all numbers and display to console
-            // problemTwo();
+
         //3) Ask user to enter a number, compute the factorial of the number and print to console.
-		//		i.e. User>5, program calc's 5*4*3*2*1 and display as "5! = 120"
-            // problemThree();
+
         //4) Program picks a random number between1-10, give user 4 chances to guess. If guessed, display "You won!", else, "You lost".
-		//		Dislpay to console what the correct number was too
-            // problemFour();
+
         //5) Ask user to enter a series of numbers separated by commas. Find biggest number and display to console.
-		//		i.e. User>4,3,8,1,4.... program should display 8
-        
+
             Console.WriteLine("Hello World!");
         }
         static void problemOne()
@@ -91,9 +112,15 @@ namespace Checkpoint1
             }
             Console.WriteLine("You lose! The answer was " + key);
         }
-        static void problemFive()
+        public static string problemFive()
         {
-            // yes
+            Console.WriteLine("Please enter a few numbers separated by commas");
+            Console.WriteLine("and I will give you the number with the highest value");
+            string input = Console.ReadLine();
+            string[] noCommas = input.Split(",");
+            Array.Reverse(noCommas);
+            Console.WriteLine("The number with the highest value is: " + noCommas[0]);
+            return " ";
         }
     }
 }
