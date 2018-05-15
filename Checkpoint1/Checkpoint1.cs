@@ -42,7 +42,6 @@ namespace Checkpoint1
 
         //5) Ask user to enter a series of numbers separated by commas. Find biggest number and display to console.
 
-            Console.WriteLine("Hello World!");
         }
         static void problemOne()
         {
