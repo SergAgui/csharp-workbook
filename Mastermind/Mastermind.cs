@@ -18,7 +18,7 @@ namespace Mastermind {
                 Row row = new Row (balls);
                 game.AddRow (row);
                 Console.WriteLine (game.Rows);
-                Console.WriteLine(turns)// ??
+                Console.WriteLine(turns); // ??
             }
             Console.WriteLine ("Out Of Turns");
         }
@@ -68,7 +68,7 @@ namespace Mastermind {
                     Console.Write (row.Balls);
                     Console.WriteLine (Score (row));
                 }
-                return $"You have {turn} tries left";
+                return ($"You have no tries left");
             }
         }
     }
