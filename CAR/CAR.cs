@@ -15,12 +15,11 @@ public class Program
 		smallGarage.ParkCar(redCar, 1);
 		blueCar.EnterCar(girl, 0);
 		redCar.EnterCar(guy, 0);
-		// Console.WriteLine(smallGarage.Cars);
 		Console.WriteLine("What  would you like to do?");
 		Console.WriteLine("To see which spot a car is parked in and who is in which car, say 'Garage'");
 		Console.WriteLine("To move a Person to another Car, say 'Move Girl' or 'Move Guy'");
 		Console.WriteLine("Or say 'DONE' when you're finnished");
-		//string read = Console.ReadLine().ToLower();
+		//'hello' below is for debugging
 		//Console.WriteLine("hello!");
 
 		do
