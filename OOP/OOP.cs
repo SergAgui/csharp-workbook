@@ -25,7 +25,7 @@ namespace OOP
             Ship tie8 = new Ship("Imperial", "Fighter", 1);
             Station rebelStation = new Station("Rebel", "Rebel Space Station", 6);
             Station imperialStation = new Station("Imperial", "Death Star", 20);
-            Console.WriteLine("If you've come this far, you need to turn back");
+            Console.WriteLine("This is not the ship you're looking for...");
 
         }
     }
