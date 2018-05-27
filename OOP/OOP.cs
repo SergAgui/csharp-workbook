@@ -13,16 +13,7 @@ namespace OOP
             Person imperial1 = new Person("Emperor", "Palpatine", "Imperial");
             Ship falcon = new Ship("Rebel", "Smuggling", 3);
             Ship xWing1 = new Ship("Rebel", "Fighter", 2);
-            Ship xWing2 = new Ship("Rebel", "Fighter", 2);
-            Ship xWing3 = new Ship("Rebel", "Fighter", 2);
             Ship tie = new Ship("Imperial", "Fighter", 1);
-            Ship tie2 = new Ship("Imperial", "Fighter", 1);
-            Ship tie3 = new Ship("Imperial", "Fighter", 1);
-            Ship tie4 = new Ship("Imperial", "Fighter", 1);
-            Ship tie5 = new Ship("Imperial", "Fighter", 1);
-            Ship tie6 = new Ship("Imperial", "Fighter", 1);
-            Ship tie7 = new Ship("Imperial", "Fighter", 1);
-            Ship tie8 = new Ship("Imperial", "Fighter", 1);
             Station rebelStation = new Station("Rebel", "Rebel Space Station", 6);
             Station imperialStation = new Station("Imperial", "Death Star", 20);
             Console.WriteLine("This is not the ship you're looking for...");
