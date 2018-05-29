@@ -190,7 +190,8 @@ class Garage
     }
     
     public string Cars {
-		get {
+		get
+		{
 			for (int i = 0; i < cars.Length; i++)
 			{
 				if (cars[i] != null)
