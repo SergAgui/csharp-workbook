@@ -177,7 +177,7 @@ namespace OOP
                             rebelStation.ExitStation(null, (Array.IndexOf(rebelStation.spaces, falcon)));
                             // Find a null in the imperial station and Enter Station
                             imperialStation.EnterStation(falcon, Array.IndexOf(imperialStation.spaces, null));
-                            Console.WriteLine("The Falcon has been captured!!");
+                            Console.WriteLine("The Millennium Falcon has been captured!!");
                         }
                         else if(Array.Exists(imperialStation.spaces, element => element == falcon))
                         {
@@ -185,7 +185,7 @@ namespace OOP
                             imperialStation.ExitStation(null, (Array.IndexOf(imperialStation.spaces, falcon)));
                             // Find a null in the imperial station and Enter Station
                             rebelStation.EnterStation(falcon, Array.IndexOf(rebelStation.spaces, null));
-                            Console.WriteLine("The Falcon has returned to the rebel station.");
+                            Console.WriteLine("The Millennium Falcon has returned to the rebel station.");
                         }
                             continue;
                     case "move tie":
