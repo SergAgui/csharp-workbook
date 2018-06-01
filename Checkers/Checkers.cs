@@ -8,29 +8,10 @@ namespace Checkers
     {
         static void Main(string[] args)
         {
-            int[][] whitePositions = new int[][] {
-                new int[] { 0, 1 }, new int[] { 0, 3 }, new int[] { 0, 5 }, new int[] { 0, 7 },
-                new int[] { 1, 0 }, new int[] { 1, 2 }, new int[] { 1, 4 }, new int[] { 1, 6 },
-                new int[] { 2, 1 }, new int[] { 2, 3 }, new int[] { 2, 5 }, new int[] { 2, 7 }
-            };
+            Game freshGame = new Game();
+            int read = Convert.ToInt32(Console.ReadLine());
             
 
-            int[][] blackPositions = new int[][] {
-                new int[] { 5, 0 }, new int[] { 5, 2 }, new int[] { 5, 4 }, new int[] { 5, 6 },
-                new int[] { 6, 1 }, new int[] { 6, 3 }, new int[] { 6, 5 }, new int[] { 6, 7 },
-                new int[] { 7, 0 }, new int[] { 7, 2 }, new int[] { 7, 4 }, new int[] { 7, 6 }
-            };
-
-            Board board = new Board();
-            
-            for (int i = 0; i < 12; i++)
-            {
-                Checker white = new Checker("white", whitePositions[i]);
-                Checker black = new Checker("black", blackPositions[i]);
-                board.Checkers.Add(white);
-                board.Checkers.Add(black);
-            }
-            board.DrawBoard();
             Console.WriteLine("hello, world");
         }
     }
@@ -46,14 +27,16 @@ namespace Checkers
             int circleId;
             if (color == "white")
             {
-                circleId = int.Parse("25CB", System.Globalization.NumberStyles.HexNumber);
+                circleId = int.Parse("25A0", System.Globalization.NumberStyles.HexNumber);
             }
             else
             {
-                circleId = int.Parse("25CF", System.Globalization.NumberStyles.HexNumber);
+                circleId = int.Parse("25B2", System.Globalization.NumberStyles.HexNumber);
             }
             this.Symbol = char.ConvertFromUtf32(circleId);
             this.Position = position;
+            // arden media
+
         }
     }
 
@@ -87,7 +70,25 @@ namespace Checkers
         
         public void GenerateCheckers()
         {
-            // Your code here
+            int[][] whitePositions = new int[][] {
+                new int[] { 0, 1 }, new int[] { 0, 3 }, new int[] { 0, 5 }, new int[] { 0, 7 },
+                new int[] { 1, 0 }, new int[] { 1, 2 }, new int[] { 1, 4 }, new int[] { 1, 6 },
+                new int[] { 2, 1 }, new int[] { 2, 3 }, new int[] { 2, 5 }, new int[] { 2, 7 }
+            };
+            
+
+            int[][] blackPositions = new int[][] {
+                new int[] { 5, 0 }, new int[] { 5, 2 }, new int[] { 5, 4 }, new int[] { 5, 6 },
+                new int[] { 6, 1 }, new int[] { 6, 3 }, new int[] { 6, 5 }, new int[] { 6, 7 },
+                new int[] { 7, 0 }, new int[] { 7, 2 }, new int[] { 7, 4 }, new int[] { 7, 6 }
+            };
+            for (int i = 0; i < 12; i++)
+            {
+                Checker white = new Checker("white", whitePositions[i]);
+                Checker black = new Checker("black", blackPositions[i]);
+                Checkers.Add(white);
+                Checkers.Add(black);
+            }
             return;
         }
         
@@ -113,6 +114,10 @@ namespace Checkers
         
         public Checker SelectChecker(int row, int column)
         {
+            Console.WriteLine("Please select a peice to move by selecting the row first:");
+            row = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Now select the column:");
+            column = Convert.ToInt32(Console.ReadLine());
             return Checkers.Find(x => x.Position.SequenceEqual(new List<int> { row, column }));
         }
         
@@ -132,7 +137,10 @@ namespace Checkers
     {
         public Game()
         {
-            // Your code here
+            Board board = new Board();
+            board.GenerateCheckers();
+            board.DrawBoard();
+            
         }
     }
 }
