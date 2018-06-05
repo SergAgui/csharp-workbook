@@ -25,15 +25,26 @@ namespace Checkers
                         Console.WriteLine("Select checker column:");
                         int col = Convert.ToInt32(Console.ReadLine());
                         
-                        Checker checker = board.SelectChecker(row, col);
+                        if(board.SelectChecker(row, col) != null)
+                        {
+                            Checker checker = board.SelectChecker(row, col);
+                            Console.WriteLine("Move to new row:");
+                            int newRow = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Move to new column:");
+                            int newCol = Convert.ToInt32(Console.ReadLine());
+                            checker.Position = new int[] { newRow, newCol };
+                            board.DrawBoard();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Move");
+                            Console.WriteLine("Select checker row:");
+                            row = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Select checker column:");
+                            col = Convert.ToInt32(Console.ReadLine());
+                        }
                         
-                        Console.WriteLine("Move to new row:");
-                        int newRow = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Move to new column:");
-                        int newCol = Convert.ToInt32(Console.ReadLine());
-                        checker.Position = new int[] { newRow, newCol };
-                        board.DrawBoard();
-                        continue;
+                        break;
                     case "remove":
                         Console.WriteLine("Select the row of the checker to remove:");
                         int removeRow = Convert.ToInt32(Console.ReadLine());
@@ -42,12 +53,12 @@ namespace Checkers
                         Checker doneChecker = board.SelectChecker(removeRow, removeCol);
                         board.RemoveChecker(doneChecker);
                         board.DrawBoard();
-                        continue;
+                        break;
                     default:
                         Console.WriteLine("I didn't get that.. what was that again?");
-                        continue;
+                        break;
                 }
-            } while (board.CheckForWin() == false);
+            } while (board.CheckForWin() != true);
 
             // Below is for debugging
             // Console.WriteLine("hello, world");
@@ -66,10 +77,12 @@ namespace Checkers
             if (color == "white")
             {
                 circleId = int.Parse("25A0", System.Globalization.NumberStyles.HexNumber);
+                Color = "white";
             }
             else
             {
                 circleId = int.Parse("25B2", System.Globalization.NumberStyles.HexNumber);
+                Color = "black";
             }
             this.Symbol = char.ConvertFromUtf32(circleId);
             this.Position = position;
