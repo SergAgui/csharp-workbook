@@ -145,7 +145,6 @@ namespace Checkers
         {
             foreach (var checker in Checkers)
             {
-                // Console.WriteLine(checker.Position[0] + " " + checker.Position[1]);
                 this.Grid[checker.Position[0]][checker.Position[1]] = checker.Symbol;
             }
             return;
@@ -170,7 +169,6 @@ namespace Checkers
         
         public void RemoveChecker(Checker checker)
         {
-            // Checkers.Find(x => x.Position.SequenceEqual(new List<int> { killRow, killCol }));
             Checkers.Remove(checker);
             return;
         }
@@ -178,14 +176,6 @@ namespace Checkers
         public bool CheckForWin()
         {
             return Checkers.All(x => x.Color == "white") || !Checkers.Exists(x => x.Color == "white");
-        }
-    }
-
-    class Game
-    {
-        public Game()
-        {
-            // Your code here
         }
     }
 }
