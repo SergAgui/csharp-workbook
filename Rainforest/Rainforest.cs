@@ -5,42 +5,19 @@ namespace Rainforest
 {
     class Program
     {
-        // wrappers around items, containers
-        // if interface
-        //make a dictionary and wrap the items
+        // Create a manifest that lists your company, location of each warehouse, and products in each container
 
         static void Main(string[] args)
         {
-            string[] items = System.IO.File.ReadAllLines(@"./items.txt");
-            Company rainforest = new Company("Rainforest LLC");
-            
-            string[] cities = new string[] {"Austin", "Houston", "Dallas", "San Antonio"};            
-            foreach (var city in cities)
-            {
-                Warehouse warehouse = new Warehouse(city, 1);
-                rainforest.warehouses.Add(warehouse);
-            }
+            Starter.Begin();
+            Console.WriteLine("yes");
 
-            for (int i = 0; i < rainforest.warehouses.Count; i++)
-            {
-                Warehouse warehouse = rainforest.warehouses[i];
-                Container container = new Container ( $"{warehouse.location}- 1", i + 1);
-                rainforest.warehouses[i].containers.Add(container);
-            }
+            // Console.WriteLine("Would you like to see 'All' items in each warehouse?");
+            // Console.WriteLine("Or did you want to see where one 'Item' is located?");
+            // string read = Console.ReadLine();
 
-            for (int i = 0; i < rainforest.warehouses.Count; i++)
-            {
-                Container container = rainforest.warehouses[i].containers[0];
-                Item item = new Item (items[i], i);
-                container.items.Add(item);
-            }
-
-            foreach (var thing in items)
-            {
-                Dictionary<string, string[]> data = new Dictionary<string, string[]>();
-            }
-
-            Console.WriteLine("Hello World!");
+            // Below is for debugging
+            // Console.WriteLine("Hello World!");
         }
     }
     class Company
@@ -102,5 +79,41 @@ namespace Rainforest
             this.name = name;
             this.price = price;
         } 
-    }   
+    }
+// cities[0]
+    class Starter
+    {
+        static public void Begin()
+        {
+            string[] items = System.IO.File.ReadAllLines(@"./items.txt");
+            Company rainforest = new Company("Rainforest LLC");
+            
+            string[] cities = new string[] {"Austin", "Houston", "Dallas", "San Antonio"};            
+            foreach (var city in cities)
+            {
+                Warehouse warehouse = new Warehouse(city, 1);
+                rainforest.warehouses.Add(warehouse);
+            }
+
+            for (int i = 0; i < rainforest.warehouses.Count; i++)
+            {
+                Warehouse warehouse = rainforest.warehouses[i];
+                Container container = new Container ( $"{warehouse.location}- 1", i + 1);
+                rainforest.warehouses[i].containers.Add(container);
+            }
+
+            for (int i = 0; i < rainforest.warehouses.Count; i++)
+            {
+                Container container = rainforest.warehouses[i].containers[0];
+                Item item = new Item (items[i], i);
+                container.items.Add(item);
+            }
+
+            foreach (var thing in items)
+            {
+                Dictionary<string, string[]> data = new Dictionary<string, string[]>();
+            }
+            Console.WriteLine("hello");
+        }
+    }
 }

@@ -7,7 +7,9 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            string directory = Directory.GetCurrentDirectory() + "/html";
+            Console.WriteLine("hello");
+            string directory = Directory.GetCurrentDirectory() + "\\html";
+            Console.WriteLine(directory);
             HTTPServer myServer = new HTTPServer(directory, "127.0.0.1", 3001);
             myServer.Start();
         }
