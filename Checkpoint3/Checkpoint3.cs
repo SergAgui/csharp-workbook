@@ -28,24 +28,37 @@ namespace WebServer
         
         static void Main()
         {
-            connectionStringBuilder.DataSource = "./database.db";
+            connectionStringBuilder.DataSource = "./databass.db";
 
+            // keeping below for testing
             Route.Add("/", (request, response, args) => {
                 response.AsText("Hello, World!");
             }, "GET");
 
-            Route.Add("/items", (request, response, args) => {
+            // adding a bit of style
+            Route.Add("/tasks", (request, response, args) => {
                 response.AsText($"{style}{getItems()}");
             }, "GET");
 
-            Route.Add("/items", (request, response, args) => {
+            // show tasks and their id
+            Route.Add("/tasks", (request, response, args) => {
                 request.ParseBody(args);
                 RunQuery($@"
-                    INSERT into items (name, price, container_id)
-                    VALUES ('{args["name"]}', '{args["price"]}', {args["container_id"]});
+                    INSERT into todo (task)
+                    VALUES ('{args["task"]}');
                 ");
                 response.AsText($"{style}{getItems()}");
             }, "POST");
+
+            // delete tasks by id
+            Route.Add("/tasks", (request, response, args) => {
+                request.ParseBody(args);
+                RunQuery($@"
+                    DELETE FROM todo
+                    WHERE ('{args["task_id"]}');
+                ");
+                response.AsText($"{style}{getItems()}");
+            }, "DELETE");
 
             //run the server
             int port = 8000;
@@ -57,7 +70,7 @@ namespace WebServer
         {
             var results = RunQuery($@"  
                 SELECT *
-                FROM items;
+                FROM todo;
             ");
             string html = $@"
                 <div class='items'>
@@ -66,26 +79,30 @@ namespace WebServer
             ";
             html += @"
                 <br/><br/>
-                <form method='POST' action='/items'>
-                    <label>Name
-                    <input name='name' />
+                <form method='POST' action='/tasks'>
+                    <label>New Task
+                    <input name='task' />
                     </label>
-                    <label>Price
-                    <input name='price' />
-                    </label>
-                    <label>Container
-                    <select name='container_id'>
-                        <option value='1'>Austin-1</option>
-                        <option value='2'>San Antonio-1</option>
-                        <option value='3'>Houston-1</option>
-                        <option value='4'>Dallas-1</option>
-                    </select>
+                    <input type='submit' value='Submit' />
+                </form>
+                <br/>
+                <form method='DELETE' action='/tasks'>
+                    <label>Remove Task by ID
+                    <input name='task_id' />
                     </label>
                     <input type='submit' value='Submit' />
                 </form>
             ";
             return html;
         }
+        //  <label>Container
+        //      <select name='container_id'>
+        //          <option value='1'>Austin-1</option>
+        //          <option value='2'>San Antonio-1</option>
+        //          <option value='3'>Houston-1</option>
+        //          <option value='4'>Dallas-1</option>
+        //      </select>
+        //  </label>
 
         static List<Dictionary<string, string>> RunQuery(string query)
         {
