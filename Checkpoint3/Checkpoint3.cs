@@ -43,22 +43,20 @@ namespace WebServer
             // show tasks and their id
             Route.Add("/tasks", (request, response, args) => {
                 request.ParseBody(args);
-                RunQuery($@"
-                    INSERT into todo (task)
-                    VALUES ('{args["task"]}');
-                ");
+                if (args.ContainsKey("_method") && args["_method"] == "DELETE") {
+                    RunQuery($@"
+                        DELETE FROM todo
+                        WHERE task_id = ('{args["task_id"]}');
+                    ");
+                } else {
+                    RunQuery($@"
+                        INSERT into todo (task)
+                        VALUES ('{args["task"]}');
+                    ");
+                }
+                
                 response.AsText($"{style}{getItems()}");
             }, "POST");
-
-            // delete tasks by id
-            Route.Add("/tasks", (request, response, args) => {
-                request.ParseBody(args);
-                RunQuery($@"
-                    DELETE FROM todo
-                    WHERE ('{args["task_id"]}');
-                ");
-                response.AsText($"{style}{getItems()}");
-            }, "DELETE");
 
             //run the server
             int port = 8000;
@@ -86,15 +84,17 @@ namespace WebServer
                     <input type='submit' value='Submit' />
                 </form>
                 <br/>
-                <form method='DELETE' action='/tasks'>
+                <form method='POST' action='/tasks'>
+                    <input type='hidden' name='_method' value='DELETE' />
                     <label>Remove Task by ID
-                    <input name='task_id' />
+                        <input name='task_id' />
                     </label>
                     <input type='submit' value='Submit' />
                 </form>
             ";
             return html;
         }
+        // maybe use later
         //  <label>Container
         //      <select name='container_id'>
         //          <option value='1'>Austin-1</option>
