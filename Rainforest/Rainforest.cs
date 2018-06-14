@@ -9,15 +9,53 @@ namespace Rainforest
 
         static void Main(string[] args)
         {
-            Starter.Begin();
+            string[] items = System.IO.File.ReadAllLines(@"./items.txt");
+            Company rainforest = new Company("Rainforest LLC");
+            Warehouse austinWarehouse = new Warehouse("Austin", 1);
+            Warehouse houstonWarehouse = new Warehouse("Houston", 1);
+            Warehouse dallasWarehouse = new Warehouse("Dallas", 1);
+            Warehouse saWarehouse = new Warehouse("San Antonio", 1);
+            // string[] cities = new string[] {"Austin", "Houston", "Dallas", "San Antonio"};            
+            // foreach (var city in cities)
+            // {
+            //     Warehouse warehouse = new Warehouse(city, 1);
+            //     rainforest.warehouses.Add(warehouse);
+            // }
+
+            for (int i = 0; i < rainforest.warehouses.Count; i++)
+            {
+                Warehouse warehouse = rainforest.warehouses[i];
+                Container container = new Container ( $"{warehouse.location}- 1", i + 1);
+                rainforest.warehouses[i].containers.Add(container);
+            }
             Console.WriteLine("yes");
 
-            // Console.WriteLine("Would you like to see 'All' items in each warehouse?");
-            // Console.WriteLine("Or did you want to see where one 'Item' is located?");
+
+            for (int i = 0; i < rainforest.warehouses.Count; i++)
+            {
+                Container container = rainforest.warehouses[i].containers[0];
+                Item item = new Item (items[i], i);
+                container.items.Add(item);
+            }
+            Console.WriteLine("yes");
+
+
+            foreach (var thing in items)
+            {
+                Dictionary<string, string[]> data = new Dictionary<string, string[]>();
+            }
+
+            Console.WriteLine("Would you like to see 'All' items in each warehouse?");
+            Console.WriteLine("Or did you want to see where one 'Item' is located?");
             // string read = Console.ReadLine();
+            Console.WriteLine(austinWarehouse);
+            // string read = Console.ReadLine();
+            Console.WriteLine("yes");
+
 
             // Below is for debugging
             // Console.WriteLine("Hello World!");
+            
         }
     }
     class Company
@@ -79,41 +117,5 @@ namespace Rainforest
             this.name = name;
             this.price = price;
         } 
-    }
-// cities[0]
-    class Starter
-    {
-        static public void Begin()
-        {
-            string[] items = System.IO.File.ReadAllLines(@"./items.txt");
-            Company rainforest = new Company("Rainforest LLC");
-            
-            string[] cities = new string[] {"Austin", "Houston", "Dallas", "San Antonio"};            
-            foreach (var city in cities)
-            {
-                Warehouse warehouse = new Warehouse(city, 1);
-                rainforest.warehouses.Add(warehouse);
-            }
-
-            for (int i = 0; i < rainforest.warehouses.Count; i++)
-            {
-                Warehouse warehouse = rainforest.warehouses[i];
-                Container container = new Container ( $"{warehouse.location}- 1", i + 1);
-                rainforest.warehouses[i].containers.Add(container);
-            }
-
-            for (int i = 0; i < rainforest.warehouses.Count; i++)
-            {
-                Container container = rainforest.warehouses[i].containers[0];
-                Item item = new Item (items[i], i);
-                container.items.Add(item);
-            }
-
-            foreach (var thing in items)
-            {
-                Dictionary<string, string[]> data = new Dictionary<string, string[]>();
-            }
-            Console.WriteLine("hello");
-        }
     }
 }
