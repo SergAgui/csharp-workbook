@@ -89,7 +89,7 @@ namespace WebServer
                     <label>Remove Task by ID
                         <input name='task_id' />
                     </label>
-                    <input type='submit' value='Submit' />
+                    <input type='submit' value='Delete' />
                 </form>
             ";
             return html;
