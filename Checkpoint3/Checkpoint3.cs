@@ -94,15 +94,6 @@ namespace WebServer
             ";
             return html;
         }
-        // maybe use later
-        //  <label>Container
-        //      <select name='container_id'>
-        //          <option value='1'>Austin-1</option>
-        //          <option value='2'>San Antonio-1</option>
-        //          <option value='3'>Houston-1</option>
-        //          <option value='4'>Dallas-1</option>
-        //      </select>
-        //  </label>
 
         static List<Dictionary<string, string>> RunQuery(string query)
         {
